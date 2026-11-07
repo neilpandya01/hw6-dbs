@@ -2,5 +2,11 @@
 data/*
 !data/.gitkeep
 
+# Plans and notes the check-in writes
+plan/*
+!plan/.gitkeep
+notes/*
+!notes/.gitkeep
+
 # Personal class and TA schedule
 reference/schedule.md
