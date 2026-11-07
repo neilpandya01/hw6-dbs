@@ -1,3 +1,6 @@
 # Personal data exports and generated data: keep local
 data/*
 !data/.gitkeep
+
+# Personal class and TA schedule
+reference/schedule.md

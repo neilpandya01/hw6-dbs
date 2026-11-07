@@ -2,7 +2,7 @@
 """Fetch a day-planning weather summary from Open-Meteo (free, no API key).
 
 Read-only against the network; writes only data/weather.json.
-Usage: python3 scripts/fetch_weather.py [--lat 41.7943] [--lon -87.5907] [--days 3]
+Usage: python3 scripts/fetch_weather.py [--lat 41.7943] [--lon -87.5907] [--days 7]
 Default location: Hyde Park, Chicago.
 """
 import argparse
@@ -18,7 +18,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--lat", type=float, default=41.7943)
     ap.add_argument("--lon", type=float, default=-87.5907)
-    ap.add_argument("--days", type=int, default=3)
+    ap.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
 
     params = {
