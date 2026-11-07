@@ -1,0 +1,3 @@
+# Personal data exports and generated data: keep local
+data/*
+!data/.gitkeep
