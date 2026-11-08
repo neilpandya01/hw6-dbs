@@ -16,7 +16,7 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
     "wind_max": 11,
     "coldest_time": "08:00",
     "wear": ["medium coat", "sweater", "hat"],
-    "outfit_note": "Chilly start, mild afternoon. Bring a layer you can take off."
+    "outfit_note": "Wear your medium coat, a sweater and a hat. It is chilly now but mild by afternoon, so dress in layers."
   },
   "schedule": [
     {
@@ -37,7 +37,7 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
       "reason": null
     }
   ],
-  "flags": ["Short warnings: deadline risk, trip conflicts, late-night work."],
+  "flags": [],
   "outlook": {
     "weather": ["Only on Mondays. 2 to 3 short lines."],
     "major_tasks": [{ "day": "Tue", "title": "Assignment due 4:00 PM" }]
@@ -49,6 +49,10 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
 ```
 
 Field rules
+- `weather.outfit_note`: one or two friendly sentences, written to me in the second person, that name exactly what to wear and why ("Wear your heavy coat, a hat and gloves. It's 33° and dropping after sunset."). The page shows it above the clothing chips. Don't just list items.
+- The page shows only: weather (live, plus `weather.wear`), the schedule, and the tasks. Everything else in this file is saved for notes and later check-ins, not displayed.
+- `flags` is almost always `[]`. Add an item only when it is absolutely necessary to see on the page, e.g. a deadline that will be missed unless I act today: `{ "text": "...", "urgent": true }`. Plain strings are never displayed. Never use flags for late-night work, trips, or general heads-ups; say those in chat if they matter.
+- Never write the word null as text. Leave a field out or use JSON `null`.
 - `kind`: one of `task`, `event`, `class`, `ta`, `break`, `travel`.
 - `plan` on a task: `do` (work on it today), `push` (suggest a new day, set `push_to` as `YYYY-MM-DD`, give `reason`), or `skip`.
 - `outlook` only on Mondays; otherwise `null`.

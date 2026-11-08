@@ -28,7 +28,7 @@ I'll message you throughout the day. **Keep a running tab** and respond briefly.
    - a later free block today,
    - a specific day to push it to, before its deadline,
    - splitting it across days.
-   Name what lighter work could slip instead. Say plainly if the deadline is at risk. Prefer a day away from trips and commitments. No late-night catch-up unless something is due before I'd wake up.
+   Name what lighter work could slip instead. Say plainly if the deadline is at risk. Prefer a day away from trips and commitments. Late-night work is fine if it's what makes the deadline; just say so plainly, no warnings.
 3. Keep it short: the recommendation and a one-line reason. I move tasks in Google Tasks myself; never say you did.
 4. **Only after I agree:** update the schedule and the task's `plan`/`push_to` in `plan/today.json`, add a line to `progress.adjustments`, and log it in `notes/log.md`. Record the move in the ledger: `python3 scripts/ledger.py add --status pushed --day <its current scheduled day> --item "title" --moved-to YYYY-MM-DD`.
 5. If this is a recurring kind of task that keeps running over, ask once if I want its estimate in `data/deadlines.md` updated. Only change it if I say yes.

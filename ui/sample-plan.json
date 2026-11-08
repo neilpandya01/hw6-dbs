@@ -10,43 +10,131 @@
     "rain_chance": 0,
     "wind_max": 9,
     "coldest_time": "08:00",
-    "wear": ["Medium coat", "Sweater", "Hat"],
-    "outfit_note": "Chilly start, mild afternoon. Wear a layer you can take off."
+    "wear": [
+      "Medium coat",
+      "Sweater",
+      "Hat"
+    ],
+    "outfit_note": "Wear a medium coat, a sweater and a hat. It's chilly now but mild by afternoon, so layers you can take off will do."
   },
   "schedule": [
-    { "start": "11:00", "end": "11:50", "title": "Class", "kind": "class", "task": null, "note": "Light reading only" },
-    { "start": "12:00", "end": "14:00", "title": "Homework A, first pass", "kind": "task", "task": "A", "note": "Hard part first" },
-    { "start": "14:00", "end": "15:00", "title": "Group meeting", "kind": "event", "task": null, "note": null },
-    { "start": "15:30", "end": "17:00", "title": "Office hours", "kind": "ta", "task": null, "note": "Answer messages between students" },
-    { "start": "19:00", "end": "20:30", "title": "Homework A, finish", "kind": "task", "task": "B", "note": null }
+    {
+      "start": "11:00",
+      "end": "11:50",
+      "title": "Class",
+      "kind": "class",
+      "task": null,
+      "note": "Light reading only"
+    },
+    {
+      "start": "12:00",
+      "end": "14:00",
+      "title": "Homework A, first pass",
+      "kind": "task",
+      "task": "A",
+      "note": "Hard part first"
+    },
+    {
+      "start": "14:00",
+      "end": "15:00",
+      "title": "Group meeting",
+      "kind": "event",
+      "task": null,
+      "note": null
+    },
+    {
+      "start": "15:30",
+      "end": "17:00",
+      "title": "Office hours",
+      "kind": "ta",
+      "task": null,
+      "note": "Answer messages between students"
+    },
+    {
+      "start": "19:00",
+      "end": "20:30",
+      "title": "Homework A, finish",
+      "kind": "task",
+      "task": "B",
+      "note": null
+    }
   ],
   "tasks": [
-    { "title": "Homework A", "prefix": "A", "plan": "do", "push_to": null, "reason": null },
-    { "title": "Reading B", "prefix": "B", "plan": "do", "push_to": null, "reason": null },
-    { "title": "Project meeting prep", "prefix": null, "plan": "push", "push_to": "2026-01-14", "reason": "Not due until later in the week, and Wednesday is free" }
+    {
+      "title": "Homework A",
+      "prefix": "A",
+      "plan": "do",
+      "push_to": null,
+      "reason": null
+    },
+    {
+      "title": "Reading B",
+      "prefix": "B",
+      "plan": "do",
+      "push_to": null,
+      "reason": null
+    },
+    {
+      "title": "Project meeting prep",
+      "prefix": null,
+      "plan": "push",
+      "push_to": "2026-01-14",
+      "reason": "Not due until later in the week, and Wednesday is free"
+    }
   ],
-  "flags": ["Homework C is due tomorrow afternoon. Finish it tonight."],
+  "flags": [],
   "outlook": {
-    "weather": ["Mild early in the week, then cooler and wetter toward the weekend."],
+    "weather": [
+      "Mild early in the week, then cooler and wetter toward the weekend."
+    ],
     "major_tasks": [
-      { "day": "Tue", "title": "Assignment due 4:00 PM" },
-      { "day": "Fri", "title": "Weekly homework due 10:00 PM" }
+      {
+        "day": "Tue",
+        "title": "Assignment due 4:00 PM"
+      },
+      {
+        "day": "Fri",
+        "title": "Weekly homework due 10:00 PM"
+      }
     ]
   },
-  "notes_for_next_time": ["Ask how much of Homework A is left."],
+  "notes_for_next_time": [
+    "Ask how much of Homework A is left."
+  ],
   "progress": {
     "updated_at": "2026-01-12T14:10:00-06:00",
-    "done": [{ "title": "Homework A, first pass", "time": "13:55" }],
-    "in_progress": [{ "title": "Reading B", "note": "about half left" }],
-    "adjustments": ["Moved the rest of Reading B to this evening"]
+    "done": [
+      {
+        "title": "Homework A, first pass",
+        "time": "13:55"
+      }
+    ],
+    "in_progress": [
+      {
+        "title": "Reading B",
+        "note": "about half left"
+      }
+    ],
+    "adjustments": [
+      "Moved the rest of Reading B to this evening"
+    ]
   },
   "wrapup": {
     "saved_at": "2026-01-12T21:30:00-06:00",
-    "done": ["Homework A"],
-    "pushes": [
-      { "title": "Reading B", "push_to": "2026-01-14", "reason": "Not due until later in the week, and Wednesday is free" }
+    "done": [
+      "Homework A"
     ],
-    "tomorrow": ["First fixed thing: 11:00 AM class", "Assignment due 4:00 PM"],
+    "pushes": [
+      {
+        "title": "Reading B",
+        "push_to": "2026-01-14",
+        "reason": "Not due until later in the week, and Wednesday is free"
+      }
+    ],
+    "tomorrow": [
+      "First fixed thing: 11:00 AM class",
+      "Assignment due 4:00 PM"
+    ],
     "flags": []
   }
 }

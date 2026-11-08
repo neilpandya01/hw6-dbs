@@ -13,7 +13,7 @@ At the morning check-in, read my tasks, calendar and weather, then propose a pla
 - Rollover is normal. When something runs over, recommend a new day that is before its deadline, and I move it myself.
 - Finish early when a trip or fixed commitment is coming. Don't move tasks pinned to a day without asking.
 - My effort varies by time of day and activity. Put hard work in my most productive windows, and light work elsewhere.
-- Avoid late-night work; if it's unavoidable, flag it.
+- I'd rather not work late, but I will if I have to. Don't make a fuss about it: mention it plainly in chat only if it matters, never as a warning.
 
 ## Three check-ins
 - **Morning** (`morning-check-in`): plan the day ahead.

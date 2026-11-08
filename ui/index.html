@@ -8,56 +8,81 @@
   :root {
     --bg: #f6f5f1; --card: #ffffff; --ink: #1f2328; --muted: #6b7280; --line: #e5e3dc;
     --task: #2563eb; --event: #7c3aed; --class: #b45309; --ta: #0f766e; --break: #6b7280; --travel: #be123c;
-    --accent: #2563eb; --flag: #b45309; --flag-bg: #fef3c7;
+    --accent: #2563eb; --good: #15803d; --urgent: #b91c1c; --urgent-bg: #fee2e2;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #14161a; --card: #1c1f25; --ink: #e8eaed; --muted: #9aa3af; --line: #2a2e36;
       --task: #60a5fa; --event: #a78bfa; --class: #fbbf24; --ta: #2dd4bf; --break: #9aa3af; --travel: #fb7185;
-      --accent: #60a5fa; --flag: #fbbf24; --flag-bg: #3a2f10;
+      --accent: #60a5fa; --good: #4ade80; --urgent: #fca5a5; --urgent-bg: #3b1a1a;
     }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-  .wrap { max-width: 1000px; margin: 0 auto; padding: 22px 18px 40px; }
-  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 22px 16px 48px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
   h1 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
   .date { color: var(--muted); font-size: 15px; }
   .saved { color: var(--muted); font-size: 12px; }
-  .headline { margin: 6px 0 18px; font-size: 17px; }
-  .grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; align-items: start; }
-  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
-  .card h2 { margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
-  .row { display: grid; grid-template-columns: 96px 1fr; gap: 10px; padding: 9px 0 9px 10px; border-top: 1px solid var(--line); border-left: 4px solid var(--c, var(--line)); margin-left: -2px; }
-  .row:first-of-type { border-top: 0; }
-  .row.now { background: color-mix(in srgb, var(--c, var(--accent)) 12%, transparent); border-radius: 6px; }
-  .time { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; padding-top: 2px; }
-  .title { font-weight: 600; }
-  .meta { margin-top: 3px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 12.5px; }
-  .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; border: 1px solid var(--line); color: var(--muted); }
-  .pill.k { color: var(--c); border-color: color-mix(in srgb, var(--c) 40%, transparent); }
-  .pill.zero { color: var(--travel); border-color: color-mix(in srgb, var(--travel) 40%, transparent); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+  .card h2 { margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; }
+  .card h2 span { text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .note { color: var(--muted); font-size: 13.5px; }
+
+  /* weather */
+  .wx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+  .wx-temp { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+  .wx-temp small { font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .wx-label { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .wx-hl { color: var(--muted); font-size: 13px; text-align: right; }
+  .hours { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+  .hour { text-align: center; padding: 8px 4px; border-radius: 10px; background: color-mix(in srgb, var(--accent) 7%, transparent); }
+  .hour .h { font-size: 12px; color: var(--muted); }
+  .hour .f { font-size: 18px; font-weight: 650; margin: 1px 0; }
+  .hour .x { font-size: 11.5px; color: var(--muted); min-height: 15px; }
+  .wx-note { margin-top: 14px; font-size: 15.5px; line-height: 1.5; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 13px; }
+
+  .urgent { background: var(--urgent-bg); color: var(--urgent); border-radius: 10px; padding: 9px 12px; margin-bottom: 14px; font-size: 14px; font-weight: 600; }
+
+  /* timeline */
+  .tl { position: relative; margin: 0; padding: 0; list-style: none; }
+  .tl::before { content: ""; position: absolute; left: 76px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .tl li { position: relative; display: grid; grid-template-columns: 62px 1fr; gap: 28px; padding: 7px 0; }
+  .tl .t { text-align: right; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .tl .dot { position: absolute; left: 70px; top: 12px; width: 14px; height: 14px; border-radius: 50%; background: var(--card); border: 2px solid var(--c, var(--line)); }
+  .tl .body { padding: 6px 10px; border-radius: 10px; }
+  .tl .ttl { font-weight: 600; }
+  .tl .sub { color: var(--muted); font-size: 13px; margin-top: 1px; }
+  .tl .tag { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 700; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); margin-left: 6px; vertical-align: 1px; }
+  .tl li.done .ttl { text-decoration: line-through; color: var(--muted); font-weight: 500; }
+  .tl li.done .dot { background: var(--good); border-color: var(--good); }
+  .tl li.done .dot::after { content: "✓"; position: absolute; inset: -3px 0 0 0; text-align: center; color: #fff; font-size: 10px; font-weight: 800; line-height: 17px; }
+  .tl li.now .body { background: color-mix(in srgb, var(--c, var(--accent)) 12%, transparent); }
+  .tl li.now .dot { background: var(--c, var(--accent)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c, var(--accent)) 25%, transparent); }
+  .tl li.past:not(.done) .t, .tl li.past:not(.done) .ttl { opacity: .6; }
   .kind-task { --c: var(--task); } .kind-event { --c: var(--event); } .kind-class { --c: var(--class); }
   .kind-ta { --c: var(--ta); } .kind-break { --c: var(--break); } .kind-travel { --c: var(--travel); }
-  .wx-top { font-size: 17px; font-weight: 600; }
-  .wx-sub { color: var(--muted); font-size: 13px; margin: 2px 0 10px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
-  .chip { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 13px; }
-  .note { color: var(--muted); font-size: 13.5px; }
-  .task { display: flex; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--line); }
+
+  /* tasks */
+  .task { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
   .task:first-of-type { border-top: 0; }
-  .badge { min-width: 22px; text-align: center; font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 1px 6px; background: var(--line); color: var(--muted); }
-  .grow { flex: 1; }
-  .push { color: var(--flag); font-size: 13px; }
-  .flag { background: var(--flag-bg); color: var(--flag); border-radius: 8px; padding: 8px 10px; margin: 6px 0; font-size: 13.5px; }
-  ul.plain { margin: 0; padding-left: 18px; } ul.plain li { margin: 4px 0; }
-  .empty { text-align: center; padding: 70px 20px; color: var(--muted); }
-  .empty h2 { color: var(--ink); font-size: 22px; text-transform: none; letter-spacing: 0; margin: 0 0 8px; }
+  .check { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: transparent; }
+  .task.done .check { background: var(--good); border-color: var(--good); color: #fff; }
+  .task.done .name { text-decoration: line-through; color: var(--muted); }
+  .task.moved .name { color: var(--muted); }
+  .badge { flex: none; min-width: 22px; text-align: center; font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 1px 6px; background: var(--line); color: var(--muted); }
+  .grow { flex: 1; min-width: 0; }
+  .pill { flex: none; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .pill.go { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+
+  .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
+  .empty h2 { color: var(--ink); font-size: 22px; text-transform: none; letter-spacing: 0; margin: 0 0 8px; display: block; }
   .empty code { background: var(--line); padding: 2px 8px; border-radius: 6px; color: var(--ink); }
   .toast { position: fixed; right: 16px; bottom: 16px; background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; }
   .toast.show { opacity: .92; }
-  @keyframes flash { from { background: color-mix(in srgb, var(--accent) 22%, transparent); } to { background: transparent; } }
+  @keyframes flash { from { background: color-mix(in srgb, var(--accent) 22%, transparent); } to { background: var(--card); } }
   .flash .card { animation: flash 1.4s ease-out; }
 </style>
 </head>
@@ -67,8 +92,11 @@
 <script>
 const app = document.getElementById('app');
 const toast = document.getElementById('toast');
-const qs = location.search.includes('sample') ? '?sample' : '';
-let lastRaw = null;
+const SAMPLE = location.search.includes('sample');
+const qs = SAMPLE ? '?sample' : '';
+let lastRaw = null, lastWx = null;
+let plan = null;       // latest saved plan, or null
+let weather = null;    // current conditions and next hours, or null
 
 function el(tag, attrs, ...kids) {
   const e = document.createElement(tag);
@@ -77,140 +105,155 @@ function el(tag, attrs, ...kids) {
     if (k === 'class') e.className = v; else e.setAttribute(k, v);
   }
   for (const kid of kids.flat()) {
-    if (kid == null || kid === false) continue;
+    if (kid == null || kid === false || kid === '') continue;
     e.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
   }
   return e;
 }
 
-const toMin = t => { if (!t) return null; const [h, m] = t.split(':').map(Number); return h * 60 + m; };
-const fmt12 = t => { if (!t) return ''; const [h, m] = t.split(':').map(Number); return ((h + 11) % 12 + 1) + (m ? ':' + String(m).padStart(2, '0') : '') + (h < 12 ? ' AM' : ' PM'); };
+// text-safe: null, undefined and the literal strings "null"/"undefined" become ''
+function txt(v) {
+  if (v == null) return '';
+  const s = String(v).trim();
+  return s === 'null' || s === 'undefined' ? '' : s;
+}
+
+const toMin = t => { if (!txt(t)) return null; const [h, m] = String(t).split(':').map(Number); return h * 60 + (m || 0); };
+const fmt12 = t => { if (!txt(t)) return ''; const [h, m] = String(t).split(':').map(Number); return ((h + 11) % 12 + 1) + (m ? ':' + String(m).padStart(2, '0') : '') + (h < 12 ? ' AM' : ' PM'); };
 const parseDate = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
 const longDate = s => parseDate(s).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
-const shortDay = s => /^\d{4}-\d{2}-\d{2}$/.test(s) ? parseDate(s).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) : s;
+const shortDay = s => /^\d{4}-\d{2}-\d{2}$/.test(txt(s)) ? parseDate(s).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) : txt(s);
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-function isNow(plan, b) {
-  const now = new Date();
-  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-  if (plan.date !== todayStr) return false;
+// "now": the real clock, except ?sample pretends it is 2:20 PM on the sample plan's day
+function getNow() {
+  if (SAMPLE && plan) { const d = parseDate(plan.date); d.setHours(14, 20); return d; }
+  return new Date();
+}
+
+function titlesMatch(a, b) {
+  a = txt(a).toLowerCase(); b = txt(b).toLowerCase();
+  return !!a && !!b && (a.includes(b) || b.includes(a));
+}
+const progressList = (p, key) => ((p.progress || {})[key] || []);
+const isDone = (p, title) => progressList(p, 'done').some(d => titlesMatch(d.title, title));
+const isDoing = (p, title) => progressList(p, 'in_progress').some(d => titlesMatch(d.title, title));
+
+function weatherCard(p) {
+  const w = weather;
+  const wear = (((p || {}).weather || {}).wear || []).map(txt).filter(Boolean);
+  const list = a => a.length < 3 ? a.join(' and ') : a.slice(0, -1).join(', ') + ', and ' + a[a.length - 1];
+  // a personal sentence: the saved note if there is one, otherwise built from the clothing list
+  const note = txt(((p || {}).weather || {}).outfit_note) || (wear.length ? `Wear your ${list(wear.map(x => x.toLowerCase()))}.` : '');
+  if (!w && !wear.length && !note) return null;
+  const head = w ? el('div', { class: 'wx-head' },
+    el('div', {}, el('div', { class: 'wx-temp' }, `${w.hours[0].temp}°`, el('small', {}, ` feels ${w.hours[0].feels}°`)), txt(w.label) && el('div', { class: 'wx-label' }, w.label)),
+    el('div', { class: 'wx-hl' }, `High ${w.hi}° · Low ${w.lo}°`, w.sunset ? el('div', {}, `Sunset ${fmt12(w.sunset)}`) : null)) : null;
+  const hours = w ? el('div', { class: 'hours' }, w.hours.map((h, i) => {
+    const extra = [h.rain >= 20 ? `rain ${h.rain}%` : null, h.wind >= 15 ? `wind ${h.wind}` : null].filter(Boolean).join(' · ');
+    return el('div', { class: 'hour' }, el('div', { class: 'h' }, i === 0 ? 'Now' : fmt12(h.time)), el('div', { class: 'f' }, `${h.feels}°`), el('div', { class: 'x' }, extra));
+  })) : null;
+  return el('div', { class: 'card' }, el('h2', {}, 'Weather'), head, hours,
+    note ? el('div', { class: 'wx-note' }, note) : null,
+    wear.length ? el('div', { class: 'chips' }, wear.map(x => el('span', { class: 'chip' }, x))) : null);
+}
+
+function urgentBlock(p) {
+  const items = (p.flags || []).filter(f => f && typeof f === 'object' && f.urgent && txt(f.text));
+  return items.length ? el('div', {}, items.map(f => el('div', { class: 'urgent' }, f.text))) : null;
+}
+
+function scheduleCard(p) {
+  const blocks = (p.schedule || []).filter(b => txt(b.title) && txt(b.start)).sort((a, b) => toMin(a.start) - toMin(b.start));
+  if (!blocks.length) return null;
+  const now = getNow();
+  const live = p.date === ymd(now);
   const mins = now.getHours() * 60 + now.getMinutes();
-  return toMin(b.start) <= mins && mins < (toMin(b.end) ?? toMin(b.start) + 1);
-}
-
-function scheduleCard(plan) {
-  const rows = (plan.schedule || []).map(b => {
-    return el('div', { class: `row kind-${b.kind || 'task'}${isNow(plan, b) ? ' now' : ''}` },
-      el('div', { class: 'time' }, fmt12(b.start), b.end ? ' – ' + fmt12(b.end) : ''),
-      el('div', {},
-        el('div', { class: 'title' }, b.title),
-        el('div', { class: 'meta' }, el('span', { class: 'pill k' }, b.kind || 'task'), b.note)));
+  const items = blocks.map(b => {
+    const s = toMin(b.start), e = toMin(b.end) ?? s + 1;
+    const state = isDone(p, b.title) ? 'done past' : (live && s <= mins && mins < e) ? 'now' : (live && e <= mins) ? 'past' : '';
+    const kind = txt(b.kind) || 'task';
+    const sub = [txt(b.end) ? `until ${fmt12(b.end)}` : '', txt(b.note)].filter(Boolean).join(' · ');
+    return el('li', { class: `kind-${kind} ${state}`.trim() },
+      el('div', { class: 't' }, fmt12(b.start)), el('span', { class: 'dot' }),
+      el('div', { class: 'body' },
+        el('div', { class: 'ttl' }, b.title, el('span', { class: 'tag' }, kind), isDoing(p, b.title) ? el('span', { class: 'tag' }, 'in progress') : null),
+        sub ? el('div', { class: 'sub' }, sub) : null));
   });
-  return el('div', { class: 'card' }, el('h2', {}, 'Schedule'), rows.length ? rows : el('div', { class: 'note' }, 'Nothing scheduled.'));
+  return el('div', { class: 'card' }, el('h2', {}, 'Schedule'), el('ul', { class: 'tl' }, items));
 }
 
-function weatherCard(plan) {
-  const w = plan.weather; if (!w) return null;
-  const sub = [
-    w.feels_low != null && w.feels_high != null ? `Feels like ${w.feels_low}–${w.feels_high}°F` : null,
-    w.rain_chance != null ? `rain ${w.rain_chance}%` : null,
-    w.wind_max != null ? `wind up to ${w.wind_max} mph` : null,
-    w.coldest_time ? `coldest around ${fmt12(w.coldest_time)}` : null,
-  ].filter(Boolean).join(' · ');
-  return el('div', { class: 'card' }, el('h2', {}, 'Weather and what to wear'),
-    el('div', { class: 'wx-top' }, w.summary), el('div', { class: 'wx-sub' }, sub),
-    el('div', { class: 'chips' }, (w.wear || []).map(x => el('span', { class: 'chip' }, x))),
-    w.outfit_note && el('div', { class: 'note' }, w.outfit_note));
+function tasksCard(p) {
+  const tasks = (p.tasks || []).filter(t => txt(t.title));
+  if (!tasks.length) return null;
+  const todo = tasks.filter(t => t.plan !== 'push' && t.plan !== 'skip');
+  const doneCount = todo.filter(t => isDone(p, t.title)).length;
+  const rows = tasks.map(t => {
+    const moved = t.plan === 'push', done = isDone(p, t.title), doing = isDoing(p, t.title);
+    const note = moved ? txt(t.reason) : t.plan === 'skip' ? txt(t.reason) : '';
+    const pill = done ? el('span', { class: 'pill' }, 'done')
+      : moved ? el('span', { class: 'pill go' }, '→ ' + (shortDay(t.push_to) || 'later'))
+      : doing ? el('span', { class: 'pill go' }, 'in progress') : null;
+    return el('div', { class: 'task' + (done ? ' done' : '') + (moved ? ' moved' : '') },
+      el('span', { class: 'check' }, '✓'), el('span', { class: 'badge' }, txt(t.prefix) || '·'),
+      el('div', { class: 'grow' }, el('div', { class: 'name' }, t.title), note ? el('div', { class: 'note' }, note) : null), pill);
+  });
+  return el('div', { class: 'card' }, el('h2', {}, 'Tasks', todo.length ? el('span', {}, `${doneCount} of ${todo.length} done`) : null), rows);
 }
 
-function tasksCard(plan) {
-  const tasks = plan.tasks || []; if (!tasks.length) return null;
-  const rows = tasks.map(t => el('div', { class: 'task' },
-    el('span', { class: 'badge' }, t.prefix || '·'),
-    el('div', { class: 'grow' }, el('div', { style: isDone(plan, t.title) ? 'text-decoration: line-through; opacity: .6' : null }, t.title),
-      t.plan === 'push' && el('div', { class: 'push' }, `Suggest moving to ${t.push_to ? shortDay(t.push_to) : 'another day'}`, t.reason ? ` — ${t.reason}` : ''),
-      t.plan === 'skip' && el('div', { class: 'note' }, t.reason || 'Skipping today')),
-    el('span', { class: 'pill' }, isDone(plan, t.title) ? 'done' : t.plan === 'push' ? 'push' : t.plan === 'skip' ? 'skip' : 'today')));
-  return el('div', { class: 'card' }, el('h2', {}, 'Tasks'), rows);
-}
+// replaceChildren turns null into the text "null", so drop empty sections first
+function show(...nodes) { app.replaceChildren(...nodes.flat().filter(n => n && n.nodeType)); }
 
-function flagsCard(plan) {
-  const f = plan.flags || []; if (!f.length) return null;
-  return el('div', { class: 'card' }, el('h2', {}, 'Heads up'), f.map(x => el('div', { class: 'flag' }, x)));
-}
-
-function isDone(plan, title) {
-  const done = ((plan.progress || {}).done || []).map(d => (d.title || '').toLowerCase());
-  const t = (title || '').toLowerCase();
-  return done.some(d => d && (d.includes(t) || t.includes(d)));
-}
-
-function progressCard(plan) {
-  const p = plan.progress; if (!p) return null;
-  const done = p.done || [], doing = p.in_progress || [], adj = p.adjustments || [];
-  if (!done.length && !doing.length && !adj.length) return null;
-  const when = p.updated_at ? new Date(p.updated_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : null;
-  const block = (label, items) => items.length ? [el('div', { class: 'note', style: 'margin-top:8px' }, label), el('ul', { class: 'plain' }, items)] : null;
-  return el('div', { class: 'card' }, el('h2', {}, 'Today so far' + (when ? ' · updated ' + when : '')),
-    block('Done', done.map(d => el('li', {}, d.title, d.time ? el('span', { class: 'note' }, ' · ' + fmt12(d.time)) : null))),
-    block('In progress', doing.map(d => el('li', {}, el('strong', {}, d.title), d.note ? ' — ' + d.note : ''))),
-    block('Adjusted', adj.map(x => el('li', {}, x))));
-}
-
-function wrapupCard(plan) {
-  const w = plan.wrapup; if (!w) return null;
-  const when = w.saved_at ? new Date(w.saved_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : null;
-  const block = (label, items) => items && items.length ? [el('div', { class: 'note', style: 'margin-top:10px' }, label), el('ul', { class: 'plain' }, items)] : null;
-  return el('div', { class: 'card' }, el('h2', {}, 'Evening wrap-up' + (when ? ' · ' + when : '')),
-    block('Done', (w.done || []).map(x => el('li', {}, x))),
-    block('Suggested moves', (w.pushes || []).map(p => el('li', {}, el('strong', {}, p.title), ' → ', shortDay(p.push_to), p.reason ? ' — ' + p.reason : ''))),
-    block('Tomorrow', (w.tomorrow || []).map(x => el('li', {}, x))),
-    (w.flags || []).map(x => el('div', { class: 'flag' }, x)));
-}
-
-function outlookCard(plan) {
-  const o = plan.outlook; if (!o) return null;
-  return el('div', { class: 'card' }, el('h2', {}, 'Week ahead'),
-    (o.weather || []).length ? [el('div', { class: 'note' }, 'Weather'), el('ul', { class: 'plain' }, o.weather.map(x => el('li', {}, x)))] : null,
-    (o.major_tasks || []).length ? [el('div', { class: 'note', style: 'margin-top:10px' }, 'Major tasks'),
-      el('ul', { class: 'plain' }, o.major_tasks.map(t => el('li', {}, el('strong', {}, t.day + ': '), t.title)))] : null);
-}
-
-function render(plan) {
+function render() {
+  if (!plan) {
+    show(weatherCard(null), el('div', { class: 'empty' },
+      el('h2', {}, 'No plan saved yet'),
+      el('div', {}, 'Start your check-in in Claude Code: type ', el('code', {}, 'good morning')),
+      el('div', { class: 'note', style: 'margin-top:12px' }, 'This page updates by itself when a plan is saved.')));
+    return;
+  }
   const saved = plan.saved_at ? new Date(plan.saved_at) : null;
-  app.replaceChildren(
+  show(
     el('header', {},
-      el('div', {}, el('h1', {}, plan.weekday || parseDate(plan.date).toLocaleDateString(undefined, { weekday: 'long' })), el('div', { class: 'date' }, longDate(plan.date))),
-      saved && el('div', { class: 'saved' }, 'Plan saved ' + saved.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }))),
-    plan.headline && el('div', { class: 'headline' }, plan.headline),
-    el('div', { class: 'grid' },
-      el('div', {}, scheduleCard(plan)),
-      el('div', {}, progressCard(plan), wrapupCard(plan), weatherCard(plan), flagsCard(plan), tasksCard(plan), outlookCard(plan))));
+      el('div', {}, el('h1', {}, txt(plan.weekday) || parseDate(plan.date).toLocaleDateString(undefined, { weekday: 'long' })), el('div', { class: 'date' }, longDate(plan.date))),
+      saved ? el('div', { class: 'saved' }, 'Plan saved ' + saved.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) : null),
+    weatherCard(plan), urgentBlock(plan), scheduleCard(plan), tasksCard(plan));
 }
 
-function renderEmpty(msg) {
-  app.replaceChildren(el('div', { class: 'empty' },
-    el('h2', {}, 'No plan saved yet'),
-    el('div', {}, msg || 'Start your check-in in Claude Code: type ', el('code', {}, 'good morning')),
-    el('div', { class: 'note', style: 'margin-top:12px' }, 'This page updates by itself when a plan is saved.')));
-}
-
-async function poll() {
+async function pollPlan() {
   try {
     const r = await fetch('/api/plan' + qs, { cache: 'no-store' });
-    if (r.status === 404) { if (lastRaw !== '404') { lastRaw = '404'; renderEmpty(); } return; }
+    if (r.status === 404) { if (lastRaw !== '404') { lastRaw = '404'; plan = null; render(); } return; }
     if (!r.ok) return; // mid-write; try again next tick
     const raw = await r.text();
     if (raw === lastRaw) return;
     const first = lastRaw === null || lastRaw === '404';
     lastRaw = raw;
-    render(JSON.parse(raw));
+    plan = JSON.parse(raw);
+    render();
     if (!first) {
       document.body.classList.remove('flash'); void document.body.offsetWidth; document.body.classList.add('flash');
       toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2200);
     }
   } catch (e) { /* server not reachable yet; keep trying */ }
 }
-poll(); setInterval(poll, 2000);
+
+async function pollWeather() {
+  try {
+    const r = await fetch('/api/weather' + qs, { cache: 'no-store' });
+    const raw = r.ok ? await r.text() : '404';
+    if (raw === lastWx) return;
+    lastWx = raw;
+    weather = r.ok ? JSON.parse(raw) : null;
+    render();
+  } catch (e) { /* keep trying */ }
+}
+
+pollPlan(); pollWeather();
+setInterval(pollPlan, 2000);
+setInterval(pollWeather, 60000);
+// keep the "now" highlight fresh without refetching
+setInterval(() => { if (plan && !SAMPLE) render(); }, 30000);
 </script>
 </body>
 </html>

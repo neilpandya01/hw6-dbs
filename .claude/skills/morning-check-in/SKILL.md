@@ -15,7 +15,7 @@ Follow `AGENTS.md`: read-only on my tasks and calendar. You may write `plan/`, `
 
 ## 2. The brief: short
 Only the essentials, in a few lines:
-- Weather for **today only** and **what to wear**. No forecast for later days (Mondays are the exception, see below).
+- Weather for **today only** and **what to wear**, said directly to me in a sentence or two ("Wear your heavy coat, a hat and gloves. It's 33° and dropping after sunset."), not a bare list. Save the same sentence as `weather.outfit_note`. No forecast for later days (Mondays are the exception, see below).
 - Anything urgent: a deadline within 48 hours, or a conflict with a fixed event or trip.
 - **Do not** recap yesterday, list completed tasks, or look more than a couple of days ahead unless it is truly important.
 
@@ -25,8 +25,9 @@ Only the essentials, in a few lines:
 - Size the day realistically. Use `reference/schedule.md` silently: hard or long work in my free blocks, light work around classes and TA time, nothing during Design Build Ship (DBS) class. Start no earlier than ~8:30 AM unless something is fixed. **Never mention productivity percentages.**
 - Use `data/deadlines.md` for due dates and rough effort. Estimates are rough: don't assume how long something takes. Ask.
 - For a rolled-over or oversized task, **recommend** a day to push to (before its deadline, in a free block, away from trips) with a one-line reason. I move it myself; never say you moved it.
-- Avoid late-night work. If unavoidable, flag it.
+- Prefer not to schedule late-night work, but it's fine when needed. Don't warn about it.
 - Show a compact timeline and one line per suggested push. Nothing else.
+- The page shows only weather, schedule and tasks. Put nothing else in the saved plan's `flags` unless it is absolutely necessary (see `plan-format.md`).
 
 ## 4. Ask one or two questions
 Same message as the plan. Only what changes the plan (e.g. how much is left on a rolled-over task).

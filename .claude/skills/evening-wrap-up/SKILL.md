@@ -26,14 +26,14 @@ For each unfinished task, **recommend** a new day (I move it myself; never say y
 - Pinned tasks don't move without asking.
 - One line each: task → day, and why. If a task is at risk of missing its deadline, say so plainly.
 - Prefer tomorrow only if it genuinely fits. Otherwise the next day that does.
-- Don't recommend late-night work to catch up. Only flag it if something is due before I'd wake up.
+- Late-night work is fine when it's needed to make a deadline. Say so plainly, without warnings.
 
 ## 4. Tomorrow, in a few lines
 - The first fixed thing tomorrow, anything due, and what tonight's pushes add.
 - No weather. No productivity numbers. No recap of the day beyond what got done.
 
 ## 5. When I agree
-1. Add a `wrapup` object to `plan/today.json` (format in `.claude/skills/morning-check-in/plan-format.md`), keeping the rest of today's plan as it is. If there is no plan for today, create a minimal file with `date`, `weekday` and `wrapup`.
+1. Add a `wrapup` object to `plan/today.json` (format in `.claude/skills/morning-check-in/plan-format.md`), keeping the rest of today's plan as it is. **Also set each pushed task's `plan` to `push`, with `push_to` and `reason`, in `tasks`**: the page shows tasks, not the wrap-up. If there is no plan for today, create a minimal file with `date`, `weekday` and `wrapup`.
 2. Record each outcome in the status ledger so I'm never reminded about finished work: `python3 scripts/ledger.py add --status done|in-progress|pushed --day <the task's scheduled day, from the digest> --item "title without prefix"` (add `--due` if known, and `--moved-to YYYY-MM-DD` for pushes). The digest already hides tasks marked done.
 3. Append a dated "Evening" entry to `notes/log.md`: done, left, suggested pushes, and what I told you about how long things took.
 4. Confirm in one line: "Wrap-up saved. Your page is updated."
