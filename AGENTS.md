@@ -15,13 +15,19 @@ At the morning check-in, read my tasks, calendar and weather, then propose a pla
 - My effort varies by time of day and activity. Put hard work in my most productive windows, and light work elsewhere.
 - Avoid late-night work; if it's unavoidable, flag it.
 
+## Two check-ins
+- **Morning** (`morning-check-in`): plan the day ahead.
+- **Evening** (`evening-wrap-up`): close the day out. Ask what got done, recommend where unfinished tasks should move, preview tomorrow. Don't plan the whole day again.
+- Both are suggestions only. I move tasks myself.
+
 ## Outfit advice
-- I walk everywhere. Each morning, say what to wear and give a short look at the next few days.
+- I walk everywhere. Each morning, say what to wear today. Only on Mondays add a short week-ahead outlook (weather trend and major tasks).
+- Keep the morning brief short: only what matters today. No recap of yesterday, and don't state productivity numbers.
 
 ## Where details live (read when needed)
 - `data/Tasks.json`, `data/deadlines.md`, `data/weather.json`: my data. Read-only.
 - `reference/data-schema.md`: how to read each data source, what's stale, known gaps, title conventions.
-- `reference/schedule.md`: weekly classes and TA work, productivity by activity, wake and sleep times, open windows.
+- `reference/schedule.md`: weekly classes and TA work, how much work fits, wake and sleep times, open windows, abbreviations.
 - `reference/clothing.md`: outfit rules.
 - `scripts/fetch_weather.py`: refreshes the weather data.
 - `notes/`: your own memory of past check-ins and rollovers.

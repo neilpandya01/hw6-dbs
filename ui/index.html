@@ -99,15 +99,11 @@ function isNow(plan, b) {
 
 function scheduleCard(plan) {
   const rows = (plan.schedule || []).map(b => {
-    const eff = b.effective;
-    const effPill = eff == null ? null :
-      eff === 0 ? el('span', { class: 'pill zero' }, 'no work') :
-      el('span', { class: 'pill' }, eff + '% focus');
     return el('div', { class: `row kind-${b.kind || 'task'}${isNow(plan, b) ? ' now' : ''}` },
       el('div', { class: 'time' }, fmt12(b.start), b.end ? ' – ' + fmt12(b.end) : ''),
       el('div', {},
         el('div', { class: 'title' }, b.title),
-        el('div', { class: 'meta' }, el('span', { class: 'pill k' }, b.kind || 'task'), effPill, b.note)));
+        el('div', { class: 'meta' }, el('span', { class: 'pill k' }, b.kind || 'task'), b.note)));
   });
   return el('div', { class: 'card' }, el('h2', {}, 'Schedule'), rows.length ? rows : el('div', { class: 'note' }, 'Nothing scheduled.'));
 }
@@ -142,6 +138,17 @@ function flagsCard(plan) {
   return el('div', { class: 'card' }, el('h2', {}, 'Heads up'), f.map(x => el('div', { class: 'flag' }, x)));
 }
 
+function wrapupCard(plan) {
+  const w = plan.wrapup; if (!w) return null;
+  const when = w.saved_at ? new Date(w.saved_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : null;
+  const block = (label, items) => items && items.length ? [el('div', { class: 'note', style: 'margin-top:10px' }, label), el('ul', { class: 'plain' }, items)] : null;
+  return el('div', { class: 'card' }, el('h2', {}, 'Evening wrap-up' + (when ? ' · ' + when : '')),
+    block('Done', (w.done || []).map(x => el('li', {}, x))),
+    block('Suggested moves', (w.pushes || []).map(p => el('li', {}, el('strong', {}, p.title), ' → ', shortDay(p.push_to), p.reason ? ' — ' + p.reason : ''))),
+    block('Tomorrow', (w.tomorrow || []).map(x => el('li', {}, x))),
+    (w.flags || []).map(x => el('div', { class: 'flag' }, x)));
+}
+
 function outlookCard(plan) {
   const o = plan.outlook; if (!o) return null;
   return el('div', { class: 'card' }, el('h2', {}, 'Week ahead'),
@@ -159,7 +166,7 @@ function render(plan) {
     plan.headline && el('div', { class: 'headline' }, plan.headline),
     el('div', { class: 'grid' },
       el('div', {}, scheduleCard(plan)),
-      el('div', {}, weatherCard(plan), flagsCard(plan), tasksCard(plan), outlookCard(plan))));
+      el('div', {}, wrapupCard(plan), weatherCard(plan), flagsCard(plan), tasksCard(plan), outlookCard(plan))));
 }
 
 function renderEmpty(msg) {
