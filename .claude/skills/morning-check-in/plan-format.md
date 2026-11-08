@@ -4,9 +4,9 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
 
 ```json
 {
-  "date": "2026-11-09",
+  "date": "2026-01-12",
   "weekday": "Monday",
-  "saved_at": "2026-11-09T08:45:00-06:00",
+  "saved_at": "2026-01-12T08:45:00-06:00",
   "headline": "One sentence on the shape of the day.",
   "weather": {
     "summary": "Sunny, 37 to 59F, dry",
@@ -20,8 +20,8 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
   },
   "schedule": [
     {
-      "start": "09:30",
-      "end": "10:20",
+      "start": "11:00",
+      "end": "11:50",
       "title": "Class",
       "kind": "class",
       "task": null,
@@ -40,7 +40,7 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
   "flags": ["Short warnings: deadline risk, trip conflicts, late-night work."],
   "outlook": {
     "weather": ["Only on Mondays. 2 to 3 short lines."],
-    "major_tasks": [{ "day": "Tue", "title": "Assignment due 5:30 PM" }]
+    "major_tasks": [{ "day": "Tue", "title": "Assignment due 4:00 PM" }]
   },
   "notes_for_next_time": ["Anything the next check-in should remember."],
   "wrapup": null
@@ -56,12 +56,12 @@ Field rules
 ## wrapup (added by the evening skill, not the morning one)
 ```json
 "wrapup": {
-  "saved_at": "2026-11-09T21:30:00-06:00",
+  "saved_at": "2026-01-12T21:30:00-06:00",
   "done": ["Homework A"],
   "pushes": [
-    { "title": "Reading B", "push_to": "2026-11-11", "reason": "Not due until Friday, and Wednesday is free" }
+    { "title": "Reading B", "push_to": "2026-01-14", "reason": "Not due until later in the week, and Wednesday is free" }
   ],
-  "tomorrow": ["First fixed thing: 9:30 AM class", "Assignment due 5:30 PM"],
+  "tomorrow": ["First fixed thing: 11:00 AM class", "Assignment due 4:00 PM"],
   "flags": ["Short warnings only."]
 }
 ```

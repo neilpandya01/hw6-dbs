@@ -1,46 +1,46 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-01-12",
   "weekday": "Monday",
-  "saved_at": "2026-11-09T08:45:00-06:00",
-  "headline": "Light morning, big block of focus time midday, and a tight evening.",
+  "saved_at": "2026-01-12T08:45:00-06:00",
+  "headline": "Light morning, a long block of focus time midday, and a quiet evening.",
   "weather": {
-    "summary": "Sunny, 37 to 59°F, dry",
-    "feels_low": 31,
-    "feels_high": 52,
+    "summary": "Mostly sunny, 40 to 60°F, dry",
+    "feels_low": 35,
+    "feels_high": 55,
     "rain_chance": 0,
-    "wind_max": 11,
+    "wind_max": 9,
     "coldest_time": "08:00",
     "wear": ["Medium coat", "Sweater", "Hat"],
     "outfit_note": "Chilly start, mild afternoon. Wear a layer you can take off."
   },
   "schedule": [
-    { "start": "09:30", "end": "10:20", "title": "Class", "kind": "class", "task": null, "note": "Light reading only" },
-    { "start": "10:30", "end": "12:30", "title": "Homework A, first pass", "kind": "task", "task": "A", "note": "Hard part first" },
-    { "start": "12:30", "end": "14:30", "title": "TA sessions", "kind": "ta", "task": null, "note": null },
-    { "start": "15:00", "end": "18:00", "title": "Office hours", "kind": "ta", "task": null, "note": "Answer emails between students" },
+    { "start": "11:00", "end": "11:50", "title": "Class", "kind": "class", "task": null, "note": "Light reading only" },
+    { "start": "12:00", "end": "14:00", "title": "Homework A, first pass", "kind": "task", "task": "A", "note": "Hard part first" },
+    { "start": "14:00", "end": "15:00", "title": "Group meeting", "kind": "event", "task": null, "note": null },
+    { "start": "15:30", "end": "17:00", "title": "Office hours", "kind": "ta", "task": null, "note": "Answer messages between students" },
     { "start": "19:00", "end": "20:30", "title": "Homework A, finish", "kind": "task", "task": "B", "note": null }
   ],
   "tasks": [
     { "title": "Homework A", "prefix": "A", "plan": "do", "push_to": null, "reason": null },
     { "title": "Reading B", "prefix": "B", "plan": "do", "push_to": null, "reason": null },
-    { "title": "Project meeting prep", "prefix": null, "plan": "push", "push_to": "2026-11-11", "reason": "Not due until Friday, and Wednesday is free" }
+    { "title": "Project meeting prep", "prefix": null, "plan": "push", "push_to": "2026-01-14", "reason": "Not due until later in the week, and Wednesday is free" }
   ],
-  "flags": ["Homework C is due Tuesday evening and you are traveling that morning. Finish it before you go."],
+  "flags": ["Homework C is due tomorrow afternoon. Finish it tonight."],
   "outlook": {
-    "weather": ["Mild early in the week, then a cold snap Thursday and Friday.", "Rain Thursday, light snow possible Friday."],
+    "weather": ["Mild early in the week, then cooler and wetter toward the weekend."],
     "major_tasks": [
-      { "day": "Tue", "title": "Assignment due 5:30 PM" },
-      { "day": "Fri", "title": "Weekly homework due 11:59 PM" }
+      { "day": "Tue", "title": "Assignment due 4:00 PM" },
+      { "day": "Fri", "title": "Weekly homework due 10:00 PM" }
     ]
   },
   "notes_for_next_time": ["Ask how much of Homework A is left."],
   "wrapup": {
-    "saved_at": "2026-11-09T21:30:00-06:00",
+    "saved_at": "2026-01-12T21:30:00-06:00",
     "done": ["Homework A"],
     "pushes": [
-      { "title": "Reading B", "push_to": "2026-11-11", "reason": "Not due until Friday, and Wednesday is free" }
+      { "title": "Reading B", "push_to": "2026-01-14", "reason": "Not due until later in the week, and Wednesday is free" }
     ],
-    "tomorrow": ["First fixed thing: 9:30 AM class", "Assignment due 5:30 PM"],
+    "tomorrow": ["First fixed thing: 11:00 AM class", "Assignment due 4:00 PM"],
     "flags": []
   }
 }

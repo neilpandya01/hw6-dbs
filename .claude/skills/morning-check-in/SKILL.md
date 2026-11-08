@@ -5,7 +5,7 @@ description: Morning check-in that plans my day. Use when I say good morning, pl
 
 # Morning check-in
 
-Follow `AGENTS.md`: read-only on my tasks, calendar and `data/`. You may write only `plan/` and `notes/`.
+Follow `AGENTS.md`: read-only on my tasks and calendar. You may write `plan/`, `notes/`, and update `data/deadlines.md` when I give new estimates.
 
 ## 1. Gather (silently, before replying)
 1. Run `python3 scripts/fetch_weather.py`, then `python3 scripts/digest.py`. It lists today's tasks (ordered 0, A..Z, then unprefixed), rollovers, the next 7 days of tasks, and weather. Trust its date.

@@ -5,7 +5,7 @@ description: Evening wrap-up, the counterpart to the morning check-in. Use when 
 
 # Evening wrap-up
 
-Morning plans the day ahead. **This closes the day out:** what got done, what didn't, and where unfinished work should go. Follow `AGENTS.md`: read-only on my tasks, calendar and `data/`. You may write only `plan/` and `notes/`.
+Morning plans the day ahead. **This closes the day out:** what got done, what didn't, and where unfinished work should go. Follow `AGENTS.md`: read-only on my tasks and calendar. You may write `plan/`, `notes/`, and update `data/deadlines.md` when I give new estimates.
 
 ## 1. Gather (silently)
 1. Run `python3 scripts/digest.py`. "Open tasks for today" and "Rolled over" are what may still be unfinished. "Completed today so far" is what's already done. "Coming up" shows the next days.

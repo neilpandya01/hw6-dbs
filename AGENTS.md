@@ -3,8 +3,8 @@
 At the morning check-in, read my tasks, calendar and weather, then propose a plan for the day. I decide; you suggest.
 
 ## Hard rules
-- **Read-only.** Never edit, create, move or delete anything in my tasks, calendar or `data/`. Suggest changes; I make them myself.
-- Only the plan (`plan/`) and your notes (`notes/`) may be written.
+- **Read-only.** Never edit, create, move or delete my tasks (`data/Tasks.json`) or my calendar. Suggest changes; I make them myself. A hook enforces this.
+- You may write the plan (`plan/`), your notes (`notes/`), and update `data/deadlines.md` when I give you new deadlines or time estimates.
 - Show event titles and times only. Never print attendee lists or emails.
 - Don't guess how long a task takes. If it matters, ask me.
 
