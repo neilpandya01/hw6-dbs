@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Morning check-in digest. Read-only: reads data/Tasks.json and data/weather.json, prints text.
+"""Morning check-in digest. Read-only: reads the tasks export, weather and the status ledger, prints text.
 
 Usage: python3 scripts/digest.py [--date YYYY-MM-DD] [--stale-days 14] [--ahead 7]
 Tasks are ordered by title prefix: 0 first, then A..Z, then unprefixed.
+Tasks marked done in notes/status.md are hidden. Env overrides for tests: TASKS_PATH, LEDGER_PATH.
 """
 import argparse
+import importlib.util
 import json
+import os
 import re
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -16,6 +19,13 @@ TZ = ZoneInfo("America/Chicago")
 PREFIX = re.compile(r"^\s*([0A-Za-z]):\s*")
 TIME_HINT = re.compile(r"\b\d{1,2}(?::\d{2})?\s?[ap]m?\b|\b\d{1,2}:\d{2}\b", re.I)
 HOURS = (8, 10, 12, 14, 16, 18, 20, 22)
+
+
+def load_ledger():
+    spec = importlib.util.spec_from_file_location("ledger", ROOT / "scripts" / "ledger.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def to_local_date(iso):
@@ -50,13 +60,24 @@ def fmt_task(t):
     p = prefix_of(t["title"]) or "-"
     hint = TIME_HINT.search(t["title"] or "")
     extra = f"  (time in title: {hint.group(0)})" if hint else ""
+    row = t.get("_row")
+    if row:
+        extra += f"  [notes: {row['status']}" + (f" -> {row['moved_to']}" if row["moved_to"] else "") + "]"
     return f"- [{p}] {clean(t['title'])}{extra}"
 
 
-def tasks_section(tasks, today, stale_days, ahead):
+def tasks_section(tasks, today, stale_days, ahead, ledger):
+    rows = ledger.read_rows()
+    index = {(ledger.norm(r["item"]), r["task_day"]): r for r in rows}
+
     open_ = [t for t in tasks if t.get("status") == "needsAction"]
+    hidden = []
+    visible = []
     for t in open_:
         t["_d"] = start_day(t)
+        t["_row"] = index.get((ledger.norm(t["title"]), t["_d"].isoformat())) if t["_d"] else None
+        (hidden if t["_row"] and t["_row"]["status"] == "done" else visible).append(t)
+    open_ = visible
     out = []
 
     todays = sorted((t for t in open_ if t["_d"] == today), key=sort_key)
@@ -69,6 +90,10 @@ def tasks_section(tasks, today, stale_days, ahead):
     out += [f"- was {t['_d']:%a %m-%d}: " + fmt_task(t)[2:] for t in rolled] or ["- none"]
     stale = sum(1 for t in open_ if t["_d"] and t["_d"] < cutoff)
     out.append(f"(ignoring {stale} older open tasks as stale)")
+    recent_hidden = [t for t in hidden if t["_d"] and t["_d"] >= cutoff]
+    if recent_hidden:
+        names = ", ".join(f"{clean(t['title'])} ({t['_d']:%m-%d})" for t in recent_hidden)
+        out.append(f"(hidden, marked done in notes/status.md: {names})")
 
     done = [t for t in tasks if t.get("status") == "completed" and t.get("completed")]
     yday = today - timedelta(days=1)
@@ -83,6 +108,13 @@ def tasks_section(tasks, today, stale_days, ahead):
         day_tasks = sorted((t for t in open_ if t["_d"] == d), key=sort_key)
         out.append(f"### {d:%a %m-%d}")
         out += [fmt_task(t) for t in day_tasks] or ["- (none)"]
+
+    recent = [r for r in rows if r["logged"] >= (today - timedelta(days=7)).isoformat()]
+    if recent:
+        out.append("\n## Recent entries in notes/status.md (last 7 days)")
+        for r in recent:
+            moved = f" -> {r['moved_to']}" if r["moved_to"] else ""
+            out.append(f"- {r['status']}: {r['item']} (task day {r['task_day']}){moved}")
     return out
 
 
@@ -131,13 +163,13 @@ def main():
     a = ap.parse_args()
     today = datetime.strptime(a.date, "%Y-%m-%d").date() if a.date else datetime.now(TZ).date()
 
-    tasks_file = ROOT / "data" / "Tasks.json"
+    tasks_file = Path(os.environ.get("TASKS_PATH") or ROOT / "data" / "Tasks.json")
     lines = [f"# Digest for {today:%A %Y-%m-%d}" + ("  (MONDAY: include weekly outlook)" if today.weekday() == 0 else "")]
     if tasks_file.exists():
         tasks = json.loads(tasks_file.read_text())["items"][0]["items"]
-        lines += tasks_section(tasks, today, a.stale_days, a.ahead)
+        lines += tasks_section(tasks, today, a.stale_days, a.ahead, load_ledger())
     else:
-        lines.append("data/Tasks.json missing.")
+        lines.append("Tasks export missing.")
     lines.append("")
     lines += weather_section(today, a.ahead)
     print("\n".join(lines))

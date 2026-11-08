@@ -8,7 +8,7 @@ description: Morning check-in that plans my day. Use when I say good morning, pl
 Follow `AGENTS.md`: read-only on my tasks and calendar. You may write `plan/`, `notes/`, and update `data/deadlines.md` when I give new estimates.
 
 ## 1. Gather (silently, before replying)
-1. Run `python3 scripts/fetch_weather.py`, then `python3 scripts/digest.py`. It lists today's tasks (ordered 0, A..Z, then unprefixed), rollovers, the next 7 days of tasks, and weather. Trust its date.
+1. Run `python3 scripts/fetch_weather.py`, then `python3 scripts/digest.py`. It lists today's tasks (ordered 0, A..Z, then unprefixed), rollovers, the next 7 days of tasks, and weather. Trust its date. Tasks I've marked done in `notes/status.md` are already hidden: **never remind me about them.** Items tagged `[notes: in-progress]` or `[notes: pushed -> day]` are known; mention them only if relevant.
 2. Read today's events from the primary Google Calendar with the connector's list/search tools only (never create, update, delete or respond). On Mondays read the whole week. Titles and times only.
 3. Read `reference/schedule.md` (today's classes, TA work, wake/sleep, how much work fits), `data/deadlines.md`, `reference/clothing.md`, and the last entries of `notes/log.md` if it exists.
 4. If something is missing or stale (no weather for today, no calendar access), say so in one line and continue.

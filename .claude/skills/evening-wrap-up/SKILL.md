@@ -34,7 +34,8 @@ For each unfinished task, **recommend** a new day (I move it myself; never say y
 
 ## 5. When I agree
 1. Add a `wrapup` object to `plan/today.json` (format in `.claude/skills/morning-check-in/plan-format.md`), keeping the rest of today's plan as it is. If there is no plan for today, create a minimal file with `date`, `weekday` and `wrapup`.
-2. Append a dated "Evening" entry to `notes/log.md`: done, left, suggested pushes, and what I told you about how long things took.
-3. Confirm in one line: "Wrap-up saved. Your page is updated."
+2. Record each outcome in the status ledger so I'm never reminded about finished work: `python3 scripts/ledger.py add --status done|in-progress|pushed --day <the task's scheduled day, from the digest> --item "title without prefix"` (add `--due` if known, and `--moved-to YYYY-MM-DD` for pushes). The digest already hides tasks marked done.
+3. Append a dated "Evening" entry to `notes/log.md`: done, left, suggested pushes, and what I told you about how long things took.
+4. Confirm in one line: "Wrap-up saved. Your page is updated."
 
 If I change something, revise and ask again before saving. Never save before I agree.

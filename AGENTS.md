@@ -26,9 +26,10 @@ At the morning check-in, read my tasks, calendar and weather, then propose a pla
 - Keep the morning brief short: only what matters today. No recap of yesterday, and don't state productivity numbers.
 
 ## Where details live (read when needed)
-- `data/Tasks.json`, `data/deadlines.md`, `data/weather.json`: my data. Read-only.
+- `data/Tasks.json` (my tasks, read-only), `data/deadlines.md` (deadlines and time estimates, I maintain it), `data/weather.json` (refreshed by the weather script).
 - `reference/data-schema.md`: how to read each data source, what's stale, known gaps, title conventions.
 - `reference/schedule.md`: weekly classes and TA work, how much work fits, wake and sleep times, open windows, abbreviations.
 - `reference/clothing.md`: outfit rules.
 - `scripts/fetch_weather.py`: refreshes the weather data.
 - `notes/`: your own memory of past check-ins and rollovers.
+- `notes/status.md`: what I've told you is done, in progress or pushed, written with `scripts/ledger.py`. Don't remind me about anything marked done.
