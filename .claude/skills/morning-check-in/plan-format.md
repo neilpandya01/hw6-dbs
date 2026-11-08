@@ -43,6 +43,7 @@ The page reads this file. Keep keys exact. Times are 24-hour local `HH:MM`. Use 
     "major_tasks": [{ "day": "Tue", "title": "Assignment due 4:00 PM" }]
   },
   "notes_for_next_time": ["Anything the next check-in should remember."],
+  "progress": null,
   "wrapup": null
 }
 ```
@@ -67,3 +68,17 @@ Field rules
 ```
 - The morning check-in sets `"wrapup": null`. The evening skill fills it in and keeps everything else in the file.
 - If there is no plan for today, the evening skill creates `date`, `weekday`, empty `schedule` and `tasks`, and `wrapup`.
+
+## progress (added by the midday skill)
+```json
+"progress": {
+  "updated_at": "2026-01-12T14:10:00-06:00",
+  "done": [{ "title": "Homework A, first pass", "time": "13:55" }],
+  "in_progress": [{ "title": "Reading B", "note": "about half left" }],
+  "adjustments": ["Moved the rest of Homework A to 19:00 tonight"]
+}
+```
+- The morning check-in sets `"progress": null`. The midday skill creates and updates it, and keeps everything else in the file.
+- Add to `done` when I say I finished something. Use the real current time (`HH:MM`).
+- `adjustments` are short plain sentences, only for changes I agreed to.
+- The evening wrap-up reads `progress` so it doesn't ask about things already logged.

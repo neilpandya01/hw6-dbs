@@ -126,16 +126,34 @@ function tasksCard(plan) {
   const tasks = plan.tasks || []; if (!tasks.length) return null;
   const rows = tasks.map(t => el('div', { class: 'task' },
     el('span', { class: 'badge' }, t.prefix || '·'),
-    el('div', { class: 'grow' }, el('div', {}, t.title),
+    el('div', { class: 'grow' }, el('div', { style: isDone(plan, t.title) ? 'text-decoration: line-through; opacity: .6' : null }, t.title),
       t.plan === 'push' && el('div', { class: 'push' }, `Suggest moving to ${t.push_to ? shortDay(t.push_to) : 'another day'}`, t.reason ? ` — ${t.reason}` : ''),
       t.plan === 'skip' && el('div', { class: 'note' }, t.reason || 'Skipping today')),
-    el('span', { class: 'pill' }, t.plan === 'push' ? 'push' : t.plan === 'skip' ? 'skip' : 'today')));
+    el('span', { class: 'pill' }, isDone(plan, t.title) ? 'done' : t.plan === 'push' ? 'push' : t.plan === 'skip' ? 'skip' : 'today')));
   return el('div', { class: 'card' }, el('h2', {}, 'Tasks'), rows);
 }
 
 function flagsCard(plan) {
   const f = plan.flags || []; if (!f.length) return null;
   return el('div', { class: 'card' }, el('h2', {}, 'Heads up'), f.map(x => el('div', { class: 'flag' }, x)));
+}
+
+function isDone(plan, title) {
+  const done = ((plan.progress || {}).done || []).map(d => (d.title || '').toLowerCase());
+  const t = (title || '').toLowerCase();
+  return done.some(d => d && (d.includes(t) || t.includes(d)));
+}
+
+function progressCard(plan) {
+  const p = plan.progress; if (!p) return null;
+  const done = p.done || [], doing = p.in_progress || [], adj = p.adjustments || [];
+  if (!done.length && !doing.length && !adj.length) return null;
+  const when = p.updated_at ? new Date(p.updated_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : null;
+  const block = (label, items) => items.length ? [el('div', { class: 'note', style: 'margin-top:8px' }, label), el('ul', { class: 'plain' }, items)] : null;
+  return el('div', { class: 'card' }, el('h2', {}, 'Today so far' + (when ? ' · updated ' + when : '')),
+    block('Done', done.map(d => el('li', {}, d.title, d.time ? el('span', { class: 'note' }, ' · ' + fmt12(d.time)) : null))),
+    block('In progress', doing.map(d => el('li', {}, el('strong', {}, d.title), d.note ? ' — ' + d.note : ''))),
+    block('Adjusted', adj.map(x => el('li', {}, x))));
 }
 
 function wrapupCard(plan) {
@@ -166,7 +184,7 @@ function render(plan) {
     plan.headline && el('div', { class: 'headline' }, plan.headline),
     el('div', { class: 'grid' },
       el('div', {}, scheduleCard(plan)),
-      el('div', {}, wrapupCard(plan), weatherCard(plan), flagsCard(plan), tasksCard(plan), outlookCard(plan))));
+      el('div', {}, progressCard(plan), wrapupCard(plan), weatherCard(plan), flagsCard(plan), tasksCard(plan), outlookCard(plan))));
 }
 
 function renderEmpty(msg) {

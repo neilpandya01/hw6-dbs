@@ -1,6 +1,6 @@
 ---
 name: morning-check-in
-description: Morning check-in that plans my day. Use when I say good morning, plan my day, start my day, what's my day, or check in. Reads my tasks, calendar, weather and notes, then gives a short brief, proposes today's plan with an outfit, asks one or two questions, and saves it when I agree. On Mondays it adds a short week-ahead section. For the end of the day, use evening-wrap-up instead.
+description: Morning check-in that plans my day. Use when I say good morning, plan my day, start my day, or what's my day. Reads my tasks, calendar, weather and notes, then gives a short brief, proposes today's plan with an outfit, asks one or two questions, and saves it when I agree. On Mondays it adds a short week-ahead section. During the day use midday-check-in, and at night use evening-wrap-up.
 ---
 
 # Morning check-in

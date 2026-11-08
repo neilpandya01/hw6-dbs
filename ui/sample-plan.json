@@ -34,6 +34,12 @@
     ]
   },
   "notes_for_next_time": ["Ask how much of Homework A is left."],
+  "progress": {
+    "updated_at": "2026-01-12T14:10:00-06:00",
+    "done": [{ "title": "Homework A, first pass", "time": "13:55" }],
+    "in_progress": [{ "title": "Reading B", "note": "about half left" }],
+    "adjustments": ["Moved the rest of Reading B to this evening"]
+  },
   "wrapup": {
     "saved_at": "2026-01-12T21:30:00-06:00",
     "done": ["Homework A"],

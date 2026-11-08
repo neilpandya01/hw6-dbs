@@ -9,12 +9,12 @@ Morning plans the day ahead. **This closes the day out:** what got done, what di
 
 ## 1. Gather (silently)
 1. Run `python3 scripts/digest.py`. "Open tasks for today" and "Rolled over" are what may still be unfinished. "Completed today so far" is what's already done. "Coming up" shows the next days.
-2. If `plan/today.json` exists with today's date, read it: that's what I planned this morning.
+2. If `plan/today.json` exists with today's date, read it: that's what I planned this morning, and its `progress` section is what I told you during the day (done, in progress, adjustments).
 3. Read tomorrow's events from the primary Google Calendar with the connector's list/search tools only (never create, update, delete or respond). Titles and times only.
 4. Read `reference/schedule.md` (tomorrow's classes and free blocks), `data/deadlines.md`, and the last entries of `notes/log.md`.
 
 ## 2. Ask first
-Show today's still-open tasks (and anything planned but not done) as a short list, then ask:
+Show today's still-open tasks (and anything planned but not done) as a short list. **Skip anything already logged as done in `progress`.** Then ask:
 - Which are done, and for anything partly done, **how much is left**.
 Keep it to that one question. Wait for my answer. Don't assume how long things take.
 
